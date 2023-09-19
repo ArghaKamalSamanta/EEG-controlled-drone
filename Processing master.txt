@@ -1,30 +1,24 @@
 /*
  * Drone mind control
  * 
- * This sketch sends Serial values  to an receiver  receiver 
+ * This sketch sends Serial values  to a receiver  receiver 
  * 
  * The input is generated via a Neurosky MindSet  Mobile headset
  * 
- * Created 21 March 2018
- * By Wesley Hartogs 
- *  Communication and Multimedia Design
- * Avans University of Applied Sciences
-  * 
- * 
  */
 
-// import Serial libary
+// import Serial library
 import processing.serial.*;
 
 //  Define receiver  Serial
 Serial receiver ;
 
 
-// Import MindSet libary
+// Import MindSet library
 import  pt.citar.diablu.processing.mindset.*;
 MindSet mindSet;
 
-// Set inital values
+// Set initial values
 int  throttle   = 0;
 int yaw        = 127;
 int pitch      = 127;
@@ -43,7 +37,7 @@ void setup() {
   // Check the COM-pot in the ThinkGear Connector in your Device Manager
   mindSet = new MindSet(this, "COM5");
 
-  // Enable anti-aliassing
+  // Enable anti-aliasing
   smooth();
 
   // Set stroke properties
@@ -51,7 +45,7 @@ void setup() {
   stroke(255);
   strokeCap(SQUARE);
 
-  // Set line colour
+  // Set line color
   fill(255);
   
 } // setup()
@@ -62,13 +56,13 @@ void draw()
   // Start with a black background
   background(0);
 
-  // Draw horizontal  line to at 40% from bottom
+  // Draw a horizontal  line at 40% from the bottom
   // This line indicates the minimum (40%) attention  needed
   line( 0, height*0.60, width, height*.60);
 
   // Draw a line from  the horizontal center upwards
   // This line gives an indication of your attention
-  // The height is mapped in reverse to get a percentage from top
+  // The height is mapped in reverse to get a percentage from the top
   // Example:  by 40% (0.4) attention the height value is (100 - 40) 60% (0.6) from top
   line(  width*.5, height, width*.5, height*map( float( attentionLevel ) / 100, 0, 1, 1,  0 ) );
 
@@ -79,7 +73,7 @@ void draw()
   // 255 = 8-bit max value for Arduino
   throttle  = int( map( attentionLevel, 40, 100, 30, 255 ) );
 
-  // Constrain values to  8 bit values to prevent errors
+  // Constrain values to  8-bit values to prevent errors
   throttle    = constrain( throttle,  0, 255);
   pitch       = constrain( pitch,     0, 255);
   roll        = constrain( roll,      0, 255);
@@ -123,7 +117,7 @@ public void poorSignalEvent(  int signalNoise )
     println( "Mindset is not touching your skin!" );
   }
 
-  //  Map the signal strenght to a percentage
+  //  Map the signal strength to a percentage
   signalStrenght = int( map( ( 200-signalNoise  ), 200, 0, 100, 0 ) );
   println( "Signal strength: " + signalStrenght + "%"  );
 }
