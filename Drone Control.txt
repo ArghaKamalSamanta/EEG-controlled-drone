@@ -8,13 +8,6 @@
  * - 4 Low Pass filters with 100 µF capacitors  and 220Ω resistors
  * - Hacked drone controller
  * 
- * Created 21 March  2018
- * By Wesley Hartogs 
- * Communication and Multimedia Design
- * Avans  University of Applied Sciences
- * 
- * Use this sketch at your own risk.
-  * 
  */
 
 // Set initial values
@@ -42,12 +35,12 @@ void setup()  {
 }
 
 void loop() {
-  // When there is an Serial connection  available, get the values
+  // When there is a Serial connection  available, get the values
   if ( Serial.available() > 0 ) {
-    throttle    =  Serial.parseInt();    // Store first interger value from Serial buffer
-    yaw         = Serial.parseInt();    // Store second interger value from Serial buffer
-    pitch       = Serial.parseInt();    // Store third interger value from Serial  buffer
-    roll        = Serial.parseInt();    // Store fourth interger value  from Serial buffer
+    throttle    =  Serial.parseInt();    // Store first integer value from Serial buffer
+    yaw         = Serial.parseInt();    // Store second integer value from Serial buffer
+    pitch       = Serial.parseInt();    // Store third integer value from Serial  buffer
+    roll        = Serial.parseInt();    // Store fourth integer value  from Serial buffer
   }
 
   // Write values to the drone controller
